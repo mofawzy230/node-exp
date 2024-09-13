@@ -4,9 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>project setup</title>
+    <title>send data to database</title>
+    <style>
+        input,button{
+            font-size: 30px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Home page</h1>
+    <!-- <h1>whate is your name</h1>
+    <form name="username"  action="/" method="post">
+        <input type="text">
+        <br>
+        <br>
+        <button>send to db</button>
+    </form> -->
+    <form action="/" method="post">
+        <label for="title">Article title:</label>
+        <input type="text" id="title" name="title" required>
+        <br>
+        <br>
+     
+        <label for="summary">Article summary:</label>
+        <input type="text" id="summary" name="summary" required>
+        <br>
+        <br>
+     
+        <label for="body">Article body:</label>
+        <textarea id="body" name="body" required></textarea>
+        <br>
+        <br>
+     
+        <button class="create">Create</button>
+    </form>
 </body>
 </html>
