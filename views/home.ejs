@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>send data to database</title>
+    <title><%= mytitle %></title>
     <style>
         input,button{
             font-size: 30px;
@@ -37,5 +37,12 @@
      
         <button class="create">Create</button>
     </form>
+    <h1>Article title:<%= arr[0].title %></h1>
+    <h1>Article summary:<%= arr[0].summary %></h1>
+    <h1>Article body:<%= arr[0].body %></h1>
+
+    <h1>Article title:<%= arr.at(-1).title %></h1>
+    <h1>Article summary:<%= arr.at(-1).summary %></h1>
+    <h1>Article body:<%= arr.at(-1).body %></h1>
 </body>
 </html>

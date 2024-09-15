@@ -4,9 +4,16 @@ const port = 3001;
 const mongoose = require('mongoose');
 app.use(express.urlencoded({ extended: true }));
 const Mydata = require("./models/mydataschema")
+app.set('view engine','ejs')
 
 app.get('/', (req, res) => {
-  res.sendFile("./views/home.html",{root:__dirname})
+
+  Mydata.find()
+  .then((result)=>{
+    res.render("home",{mytitle:"home page",arr:result})
+  })
+  .catch((err)=>{console.log(err)})
+  
 })
 
 app.get('/index.html', (req, res) => {
