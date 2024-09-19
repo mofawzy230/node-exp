@@ -5,6 +5,23 @@ const mongoose = require('mongoose');
 app.use(express.urlencoded({ extended: true }));
 const Mydata = require("./models/mydataschema")
 app.set('view engine','ejs')
+app.use(express.static('public'))
+
+const path = require("path");
+const livereload = require("livereload");
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch(path.join(__dirname, 'public'));
+ 
+ 
+const connectLivereload = require("connect-livereload");
+app.use(connectLivereload());
+ 
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
+
 
 //احضار البيانات وعرضها فى ملف home
 
@@ -13,12 +30,20 @@ mongoose
 .then( ()=>{
     app.listen(port, () => {
         console.log(`http://localhost:${port}/`)   
-        console.log(`https://github.com/mofawzy230/node-exp-level3`)
+        console.log(`https://github.com/mofawzy230/node-exp.git`)
     })
 })
 .catch((err)=>{console.log(err)});
 
-reloadhome()
+app.get('/', (req, res) => {
+
+  Mydata.find()
+  .then((result)=>{
+    res.render("home",{mytitle:"home page",arr:result})
+  })
+  .catch((err)=>{console.log(err)})
+  
+})
 
 
 
@@ -44,16 +69,7 @@ app.get('/index.html', (req, res) => {
   res.send("<h1>تم ارسال البيانات بنجاح</h1>")
 })
 
-reloadhome()
-function reloadhome(){
-  app.get('/', (req, res) => {
 
-    Mydata.find()
-    .then((result)=>{
-      res.render("home",{mytitle:"home page",arr:result})
-    })
-    .catch((err)=>{console.log(err)})
-    
-  })
   
-}
+  
+
