@@ -24,6 +24,24 @@ liveReloadServer.server.once("connection", () => {
 
 
 //احضار البيانات وعرضها فى ملف home
+app.get('/', (req, res) => {
+res.render("index",{ });
+});
+
+app.get('/user/add.html', (req, res) => {
+  res.render("user/add",{ });
+});
+
+app.get('/user/view.html', (req, res) => {
+  res.render("user/view",{ });
+});
+
+app.get('/user/edit.html', (req, res) => {
+  res.render("user/edit",{ });
+});
+
+
+
 
 mongoose
 .connect("mongodb+srv://mofawzy:hgvplkhgvpdl@cluster0.yjqwz.mongodb.net/all-data?retryWrites=true&w=majority&appName=Cluster0")
@@ -35,39 +53,10 @@ mongoose
 })
 .catch((err)=>{console.log(err)});
 
-app.get('/', (req, res) => {
-
-  Mydata.find()
-  .then((result)=>{
-    res.render("home",{mytitle:"home page",arr:result})
-  })
-  .catch((err)=>{console.log(err)})
-  
-})
 
 
 
 
-
-// حفظ البيانات و ارسال رسالة تفيد  بارسال البيانات  بنجاح
-app.post('/', (req, res) => {
-  console.log(req.body)
-
-  const mydata = new Mydata(req.body);
-
-  mydata.save()
-  .then (()=>{
-    res.redirect("/index.html")
-  }) 
-  .catch((err)=>{
-    console.log(err)
-
-  })
-})
-
-app.get('/index.html', (req, res) => {
-  res.send("<h1>تم ارسال البيانات بنجاح</h1>")
-})
 
 
   
