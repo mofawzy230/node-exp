@@ -40,7 +40,9 @@ app.get('/user/edit.html', (req, res) => {
   res.render("user/edit",{ });
 });
 
-
+app.get('/user/search.html', (req, res) => {
+  res.render("user/search",{ });
+});
 
 
 mongoose
