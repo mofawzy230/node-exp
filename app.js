@@ -3,7 +3,7 @@ const app = express();
 const port = 3001;
 const mongoose = require('mongoose');
 app.use(express.urlencoded({ extended: true }));
-const Mydata = require("./models/mydataschema")
+const User = require("./models/customerSchema")
 app.set('view engine','ejs')
 app.use(express.static('public'))
 
@@ -11,7 +11,6 @@ const path = require("path");
 const livereload = require("livereload");
 const liveReloadServer = livereload.createServer();
 liveReloadServer.watch(path.join(__dirname, 'public'));
- 
  
 const connectLivereload = require("connect-livereload");
 app.use(connectLivereload());
@@ -23,7 +22,7 @@ liveReloadServer.server.once("connection", () => {
 });
 
 
-//احضار البيانات وعرضها فى ملف home
+//GET Request
 app.get('/', (req, res) => {
 res.render("index",{ });
 });
@@ -43,6 +42,23 @@ app.get('/user/edit.html', (req, res) => {
 app.get('/user/search.html', (req, res) => {
   res.render("user/search",{ });
 });
+
+//POST Request
+app.post("/user/add.html", (req, res) => {
+ 
+  const user = new User(req.body);
+  user.save()
+  .then(()=>{
+    res.redirect("/user/add.html")
+  })
+  
+  .catch((err)=>{
+    console.log(err)
+  })
+});
+
+
+  
 
 
 mongoose
