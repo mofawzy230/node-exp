@@ -33,13 +33,20 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/user/add.html", (req, res) => {
-  res.render("user/add", {});
+app.get("/user/:id", (req, res) => {
+ //rusult ==>  object
+  User.findById(req.params.id)
+    .then((result)=>{
+     res.render("user/view",{item:result})
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+    
 });
 
-app.get("/user/view.html", (req, res) => {
-  res.render("user/view", {});
-});
+
+
 
 app.get("/user/edit.html", (req, res) => {
   res.render("user/edit", {});
