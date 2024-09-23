@@ -95,12 +95,12 @@
 
             <tr>
               <th scope="row">Created on</th>
-              <td>test6</td>
+              <td><%= moment(item.createdAt).fromNow(); %></td>
             </tr>
 
             <tr>
               <th scope="row">Last Update</th>
-              <td>test7</td>
+              <td><%= moment(item.updatedAt).fromNow(); %></td>
             </tr>
           </tbody>
         </table>
