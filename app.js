@@ -26,8 +26,11 @@ liveReloadServer.server.once("connection", () => {
 });
 
 //GET Request
+
 app.get("/", (req, res) => {
   //rusult ==> array of objects
+  console.log("------------------------------------------")
+  
   User.find()
     .then((result)=>{
       res.render("index", { arr: result,moment: moment })
@@ -36,9 +39,6 @@ app.get("/", (req, res) => {
       console.log(err)
     });
 });
-
-
-
 
 app.get("/user/add.html", (req, res) => {
   res.render("user/add", {});
@@ -71,6 +71,9 @@ app.get("/view/:id", (req, res) => {
      
  });
 
+
+
+
 //POST Request
 app.post("/user/add.html", (req, res) => {
   const user = new User(req.body);
@@ -84,6 +87,9 @@ app.post("/user/add.html", (req, res) => {
       console.log(err);
     });
 });
+
+
+
 
 // DELETE Request
 app.delete("/edit/:id",(req,res)=>{
