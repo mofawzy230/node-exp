@@ -29,8 +29,6 @@ liveReloadServer.server.once("connection", () => {
 
 app.get("/", (req, res) => {
   //rusult ==> array of objects
-  console.log("------------------------------------------");
-
   User.find()
     .then((result) => {
       res.render("index", { arr: result, moment: moment });
@@ -74,6 +72,19 @@ app.post("/user/add.html", (req, res) => {
   User.create(req.body)
     .then(() => {
       res.redirect("/");
+    })
+
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.post("/search", (req, res) => {
+  console.log("========================================")
+  User.find({ $or: [{firstName: "fawzy"}, {lastName: "fawzy"}] })
+    .then((result) => {
+      console.log(result)
+      res.render("user/search", { arr: result, moment: moment });
     })
 
     .catch((err) => {
