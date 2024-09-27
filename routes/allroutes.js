@@ -23,11 +23,11 @@ router.post("/search", useControllers.user_search_post);
 
 
 // DELETE Request
-router.delete("/edit/:id", useControllers.user_id_delete);
+router.delete("/edit/:id", useControllers.user_delete);
 
 
 
 // UPDATE Request
-router.put("/edit/:id", useControllers.user_id_put);
+router.put("/edit/:id", useControllers.user_put);
 
 module.exports = router;
